@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legenda Abah Store</title>
+    <style>
+        :root {
+            --primary: #111;
+            --hover: #333;
+        }
+        body { background: #fff; color: var(--primary); font-family: Arial, sans-serif; margin:0; }
+        .header { display: flex; flex-direction: column; align-items: center; padding: 36px 0 12px 0; border-bottom: 3px solid var(--primary);}
+        .logo {
+            width: 120px; margin-bottom: 14px;
+            opacity: 0; transform: scale(0.7);
+            animation: popLogo .7s cubic-bezier(.4,1.5,.7,1) forwards;
+        }
+        @keyframes popLogo {
+            to { opacity: 1; transform: scale(1);}
+        }
+        .title { font-size: 2.2em; font-weight: bold; color: var(--primary);}
+        .legenda {
+            padding: 44px 36px 28px 36px;
+            max-width: 1080px;
+            margin: 0 auto;
+            background: #f8f8f8;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #0001;
+            font-size: 1.18em;
+            line-height: 1.8;
+        }
+        .legenda h2 {
+            margin-top: 0;
+            margin-bottom: 28px;
+            color: var(--primary);
+            font-size: 2em;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+        .typing-container {
+            margin-bottom: 1.8em;
+            min-height: 56px;
+        }
+        .typing {
+            display: inline-block;
+            white-space: pre-line;
+            text-align: center;
+            word-break: break-word;
+        }
+        .blinker {
+            display: inline-block;
+            vertical-align: bottom;
+            width: 2.5px;
+            height: 1.2em;
+            background: var(--primary);
+            margin-left: 1.5px;
+            animation: blinking-cursor 1s steps(1) infinite;
+        }
+        @keyframes blinking-cursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .hidden { display: none; }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 18px;
+            margin: 36px auto 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-button, .reseller-button {
+            background: var(--primary);
+            color: #fff;
+            padding: 18px 42px;
+            border-radius:10px;
+            font-size: 1.15em;
+            font-weight: bold;
+            text-decoration:none;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 26px #1113;
+            display: block;
+            transition: background .14s, transform .13s;
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+        .product-button:hover, .reseller-button:hover {
+            background: var(--hover);
+            transform: scale(1.07);
+        }
+
+        /* Sticker text + panah */
+        .note-with-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+            margin-right: -10px;
+            min-width: 125px;
+        }
+        .note-label {
+            background: #fff;
+            color: var(--primary);
+            font-size: 0.99em;
+            font-weight: bold;
+            padding: 6px 16px 6px 13px;
+            border-radius: 15px;
+            border: 2px solid #111;
+            display: inline-block;
+            box-shadow: 0 2px 14px #0001;
+            margin-bottom: 2px;
+            margin-left: 9px;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+            transform: rotate(-6deg);
+            position: relative;
+            z-index: 2;
+            user-select: none;
+            white-space: nowrap;
+        }
+        .note-arrow {
+            width: 60px;
+            height: 35px;
+            display: block;
+            margin-top: -2px;
+            margin-bottom: -4px;
+        }
+        /* Responsive: bawah tombol saat mobile */
+        @media (max-width: 650px) {
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+            .note-with-arrow {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin: 11px auto 0 auto;
+                min-width: unset;
+                width: fit-content;
+            }
+            .note-label {
+                margin-left: 0;
+                margin-right: 9px;
+                margin-bottom: 0;
+                font-size: 0.97em;
+            }
+            .note-arrow {
+                transform: rotate(92deg);
+                width: 37px;
+                height: 26px;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+        @media (max-width: 1200px) {
+            .legenda { max-width: 94vw; padding: 28px 6vw 18px 6vw; }
+        }
+        @media (max-width: 700px) {
+            .legenda { padding: 18px 4vw 14px 4vw; font-size: 1em;}
+            .logo { width: 90px; }
+            .title { font-size: 1.4em;}
+            .blinker { height: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo-abah-store.png" class="logo" alt="Logo Abah Store" id="abahLogo">
+        <div class="title">ABAH STORE</div>
+    </div>
+    <div class="legenda">
+        <h2>Legenda Abah Store</h2>
+        <div class="typing-container"><span class="typing" id="typing1"></span></div>
+        <div class="typing-container hidden"><span class="typing" id="typing2"></span></div>
+        <div class="typing-container hidden"><span class="typing" id="typing3"></span></div>
+        <div class="typing-container hidden"><span class="typing" id="typing4"></span></div>
+        <div class="typing-container hidden"><span class="typing" id="typing5"></span></div>
+    </div>
+    <div class="button-group">
+        <a href="produk.html" class="product-button">Cek Produk</a>
+        <div style="display:flex; flex-direction:column; align-items:center; position:relative;">
+          <div class="note-with-arrow">
+            <span class="note-label">MULAI BISNIS TANPA MODAL!!</span>
+            <!-- SVG panah lebih tegas & jelas -->
+            <svg class="note-arrow" viewBox="0 0 50 40" fill="none">
+                <path d="M3 8 Q40 22 36 38" stroke="#111" stroke-width="3.7" fill="none"/>
+                <!-- Arrowhead -->
+                <polygon points="36,38 30,36 34,45 38,36" style="fill:#111"/>
+            </svg>
+          </div>
+          <a href="https://wa.me/085159770254?text=Min%20saya%20mau%20jadi%20reseller%20Abah%20Store" class="reseller-button" target="_blank" style="margin-top: 5px;">Info Reseller</a>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2023 ABAH STORE | WhatsApp: 0851-5977-0254
+    </div>
+    <script>
+    const paragraphs = [
+      "Dari kebiasaan sederhana seorang remaja yang gemar menonton film bajakan, lahirlah sebuah kesadaran besar. Suatu hari, ia mendapatkan tugas untuk membuat film sendiri, dan di situlah ia merasakan betapa sulitnya melahirkan sebuah karya. Rasa bersalah pun tumbuh karena selama ini ia menikmati hasil jerih payah orang lain tanpa memberi penghargaan.",
+      "Kesadaran itu menjadi titik balik. Ia mulai menabung, berusaha menonton film secara legal agar rasa bersalah itu tak lagi menghantui. Hingga akhirnya ia menemukan akses premium dengan harga murah. Dari sana, sebuah ide muncul: “Kalau akses ini kujual lagi kepada teman-temanku, bukankah mereka juga bisa menikmati karya dengan cara yang lebih baik?”",
+      "Langkah kecil itu menjadi awal perjalanan besar. Ia mulai menjual akses premium kepada teman sekelas. Dari mulut ke mulut, namanya semakin dikenal. Produk yang dijual bertambah banyak, harga semakin variatif, dan ia selalu memberi garansi penuh agar pelanggan merasa aman. Kepercayaan pun tumbuh, dan dari kepercayaan lahirlah reputasi.",
+      "Tanpa iklan besar, hanya lewat cerita, jangkauannya meluas dari teman, guru, hingga masyarakat umum. Ia lalu memilih nama Abah untuk tokonya. Nama itu bukan sekadar label, melainkan simbol: ia ingin hadir seperti sosok ayah, memberi rasa aman, mendengar keluh kesah, dan menjadi tempat berbagi.",
+      "Kini, Abah Store bukan hanya tentang menjual produk. Ia adalah kisah tentang perubahan: dari rasa bersalah menjadi tekad, dari tekad menjadi usaha, dan dari usaha menjadi inspirasi. Bahwa setiap kesalahan bisa menjadi pelajaran, setiap pelajaran bisa melahirkan peluang, dan setiap peluang bisa tumbuh menjadi sesuatu yang berarti bagi banyak orang."
+    ];
+
+    function typeParagraph(idx) {
+      const text = paragraphs[idx];
+      const target = document.getElementById("typing" + (idx+1));
+      let i = 0;
+      function typingStep() {
+        if (i <= text.length) {
+          target.innerHTML = text.slice(0, i) + (i < text.length ? '<span class="blinker"></span>' : '');
+          i++;
+          if (i <= text.length) {
+            setTimeout(typingStep, 18);
+          } else {
+            target.innerHTML = text;
+            const nextContainer = document.getElementsByClassName("typing-container")[idx+1];
+            if(nextContainer) {
+              nextContainer.classList.remove("hidden");
+              setTimeout(() => typeParagraph(idx+1), 400);
+            }
+          }
+        }
+      }
+      typingStep();
+    }
+    window.onload = function(){
+      typeParagraph(0);
+    }
+    </script>
+</body>
+</html>

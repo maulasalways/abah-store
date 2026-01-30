@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABAH STORE - Produk Digital Premium</title>
+    <style>
+        :root {
+            --primary: #111;
+            --hover: #333;
+        }
+        body { background: #fff; color: var(--primary); font-family: Arial, sans-serif; margin:0; }
+        .header { display: flex; align-items: center; padding: 20px; border-bottom: 3px solid var(--primary);}
+        .logo { width: 80px; margin-right: 16px;}
+        .title { font-size: 2em; font-weight: bold; color: var(--primary);}
+        .banner { padding: 30px 10px; text-align: center; }
+        .banner h2 { color: var(--primary);}
+        .product-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width:1200px; margin: 0 auto; }
+        .product {
+            background: #fafafa;
+            border: 1.5px solid #eee;
+            padding: 20px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 2px 6px #00000011;
+            transition: transform .14s, box-shadow .12s, border .14s;
+        }
+        .product:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px #00000022;
+            border-color: var(--primary);
+        }
+        .product img { width: 84px; margin-bottom: 14px;}
+        .product h3 { color: var(--primary); letter-spacing: 0.5px;}
+        .button {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius:7px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-decoration:none;
+            margin-top:12px;
+            box-shadow: 0 2px 8px #1112;
+            transition: background .13s, transform .12s;
+        }
+        .button:hover {
+            background: var(--hover);
+            transform: scale(1.07);
+        }
+        .footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            background: #f6f6f6;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        @media (max-width:1000px){ .product-list { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width:700px){ .product-list { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo-abah-store.png" class="logo" alt="Logo Abah Store">
+        <div class="title">ABAH STORE</div>
+    </div>
+    <div class="banner">
+        <h2>Produk Digital Premium</h2>
+        <p>Dengan harga terjangkau dan proses mudah. Tersedia Netflix Premium, Canva Premium, CapCut Pro, dan lainnya!</p>
+    </div>
+    <div class="product-list">
+        <div class="product">
+            <img src="netflix.png" alt="Netflix">
+            <h3>Netflix Premium</h3>
+            <p>Mulai Rp 25.000/bulan</p>
+            <a class="button" href="https://wa.me/nomoranda">Pesan</a>
+        </div>
+        <div class="product">
+            <img src="canva.png" alt="Canva">
+            <h3>Canva Premium</h3>
+            <p>Mulai Rp 25.000/bulan</p>
+            <a class="button" href="https://wa.me/nomoranda">Pesan</a>
+        </div>
+        <div class="product">
+            <img src="capcut.png" alt="CapCut">
+            <h3>CapCut Pro</h3>
+            <p>Mulai Rp 20.000/bulan</p>
+            <a class="button" href="https://wa.me/nomoranda">Pesan</a>
+        </div>
+        <div class="product">
+            <img src="other.png" alt="Produk Lain">
+            <h3>Produk Lainnya</h3>
+            <p>Hubungi kami untuk info produk digital premium lain</p>
+            <a class="button" href="https://wa.me/nomoranda">Cek Produk Lainnya</a>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2023 ABAH STORE | WhatsApp: 08xxxxxxx
+    </div>
+</body>
+</html>
