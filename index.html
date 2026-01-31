@@ -22,8 +22,6 @@
       margin: 0;
       min-height: 100vh;
       padding: 0;
-
-      /* supaya footer tetap rapi di bawah */
       display: flex;
       flex-direction: column;
     }
@@ -61,7 +59,7 @@
       text-align: center;
     }
 
-    /* ================= KOTAK LEGENDA ================= */
+    /* ================= KOTAK KILAS BALIK ================= */
     .legenda {
       padding: 26px 24px 18px 24px;
       max-width: 700px;
@@ -73,8 +71,6 @@
       font-size: 1.13em;
       line-height: 1.77;
       text-align: center;
-
-      /* biar konten mendorong footer ke bawah */
       flex: 1;
     }
 
@@ -84,47 +80,33 @@
       color: var(--primary);
       font-size: 1.38em;
       letter-spacing: 0.5px;
-      text-align: center;
       font-weight: 700;
     }
 
-    .typing-container {
-      margin-bottom: 1.5em;
-      min-height: 44px;
+    /* ================= SCROLL FADE-IN ================= */
+    .story p {
+      margin: 0 0 1.25em 0;
     }
 
-    .typing {
-      display: inline-block;
-      white-space: pre-line;
-      text-align: center;
-      word-break: break-word;
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .65s ease, transform .65s ease;
+      will-change: opacity, transform;
     }
 
-    .blinker {
-      display: inline-block;
-      vertical-align: bottom;
-      width: 2.5px;
-      height: 1.2em;
-      background: var(--primary);
-      margin-left: 1.5px;
-      animation: blinking-cursor 1s steps(1) infinite;
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    @keyframes blinking-cursor {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .hidden { display: none; }
-
-    /* ================= AREA TOMBOL (DI LUAR KOTAK) ================= */
+    /* ================= AREA TOMBOL ================= */
     .button-row {
       width: 100%;
       max-width: 520px;
       margin: 18px auto 32px auto;
       padding: 0 14px;
       position: relative;
-
       display: flex;
       justify-content: center;
       align-items: flex-end;
@@ -137,7 +119,6 @@
       border-radius: 13px;
       font-size: 1.13em;
       font-weight: bold;
-      text-decoration: none;
       letter-spacing: 1px;
       box-shadow: 0 2px 14px #1112;
       border: none;
@@ -166,12 +147,12 @@
     /* stiker + panah */
     .note-with-arrow {
       position: absolute;
-      top: -70px;            /* sedikit dinaikkan biar panah jatuh pas */
+      top: -70px;
       left: 0;
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;    /* pastikan center terhadap tombol reseller */
+      align-items: center;
       pointer-events: none;
       z-index: 2;
     }
@@ -185,14 +166,12 @@
       border-radius: 14px;
       border: 2px solid #111;
       box-shadow: 0 2px 6px #0001;
-      font-family: inherit;
       transform: rotate(-6deg);
       user-select: none;
       white-space: nowrap;
-      margin-bottom: 2px; /* beri jarak kecil sebelum panah */
+      margin-bottom: 2px;
     }
 
-    /* PANAH FIX: ukuran + posisinya dibuat pas menunjuk ke tombol */
     .note-arrow {
       width: 70px;
       height: 55px;
@@ -232,7 +211,6 @@
         max-width: 340px;
       }
 
-      /* FIX PENTING: stiker ikut alur (tidak nutup tombol lain) */
       .note-with-arrow {
         position: relative;
         top: 0;
@@ -242,10 +220,18 @@
 
       .note-label { font-size: .96em; }
 
-      /* panah mobile: lebih kecil tapi tetap menunjuk tombol */
       .note-arrow {
         width: 50px;
         height: 40px;
+      }
+    }
+
+    /* Aksesibilitas: hormati user yang mematikan animasi */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -258,18 +244,34 @@
     <div class="title">ABAH STORE</div>
   </div>
 
-  <!-- KOTAK PARAGRAF (hanya legenda/cerita) -->
+  <!-- KOTAK CERITA -->
   <div class="legenda">
     <h2>Kilas Balik</h2>
 
-    <div class="typing-container"><span class="typing" id="typing1"></span></div>
-    <div class="typing-container hidden"><span class="typing" id="typing2"></span></div>
-    <div class="typing-container hidden"><span class="typing" id="typing3"></span></div>
-    <div class="typing-container hidden"><span class="typing" id="typing4"></span></div>
-    <div class="typing-container hidden"><span class="typing" id="typing5"></span></div>
+    <div class="story">
+      <p class="reveal">
+        Dari kebiasaan sederhana seorang remaja yang gemar menonton film bajakan, lahirlah sebuah kesadaran besar. Suatu hari, ia mendapatkan tugas untuk membuat film sendiri, dan di situlah ia merasakan betapa sulitnya melahirkan sebuah karya. Rasa bersalah pun tumbuh karena selama ini ia menikmati hasil jerih payah orang lain tanpa memberi penghargaan.
+      </p>
+
+      <p class="reveal">
+        Kesadaran itu menjadi titik balik. Ia mulai menabung, berusaha menonton film secara legal agar rasa bersalah itu tak lagi menghantui. Hingga akhirnya ia menemukan akses premium dengan harga murah. Dari sana, sebuah ide muncul: “Kalau akses ini kujual lagi kepada teman-temanku, bukankah mereka juga bisa menikmati karya dengan cara yang lebih baik?”
+      </p>
+
+      <p class="reveal">
+        Langkah kecil itu menjadi awal perjalanan besar. Ia mulai menjual akses premium kepada teman sekelas. Dari mulut ke mulut, namanya semakin dikenal. Produk yang dijual bertambah banyak, harga semakin variatif, dan ia selalu memberi garansi penuh agar pelanggan merasa aman. Kepercayaan pun tumbuh, dan dari kepercayaan lahirlah reputasi.
+      </p>
+
+      <p class="reveal">
+        Tanpa iklan besar, hanya lewat cerita, jangkauannya meluas dari teman, guru, hingga masyarakat umum. Ia lalu memilih nama Abah untuk tokonya. Nama itu bukan sekadar label, melainkan simbol: ia ingin hadir seperti sosok ayah, memberi rasa aman, mendengar keluh kesah, dan menjadi tempat berbagi.
+      </p>
+
+      <p class="reveal">
+        Kini, Abah Store bukan hanya tentang menjual produk. Ia adalah kisah tentang perubahan: dari rasa bersalah menjadi tekad, dari tekad menjadi usaha, dan dari usaha menjadi inspirasi. Bahwa setiap kesalahan bisa menjadi pelajaran, setiap pelajaran bisa melahirkan peluang, dan setiap peluang bisa tumbuh menjadi sesuatu yang berarti bagi banyak orang.
+      </p>
+    </div>
   </div>
 
-  <!-- TOMBOL (di luar kotak) -->
+  <!-- TOMBOL -->
   <div class="button-row">
     <button class="product-button" type="button" onclick="location.href='produk.html'">
       Cek Produk
@@ -278,10 +280,7 @@
     <div class="reseller-col">
       <div class="note-with-arrow" aria-hidden="true">
         <span class="note-label">MULAI BISNIS TANPA MODAL!!</span>
-
-        <!-- PANAH FIX: ujung panah mengarah ke tengah tombol "Info Reseller" -->
         <svg class="note-arrow" viewBox="0 0 80 80" fill="none">
-          <!-- garis panah: mulai dari atas, melengkung turun ke tengah -->
           <path
             d="M40 6 Q58 34 40 64"
             stroke="#111"
@@ -289,7 +288,6 @@
             stroke-linecap="round"
             fill="none"
           />
-          <!-- ujung panah menghadap ke bawah -->
           <polygon points="40,72 33,61 47,61" fill="#111" />
         </svg>
       </div>
@@ -306,47 +304,34 @@
   </div>
 
   <script>
-    const paragraphs = [
-      "Dari kebiasaan sederhana seorang remaja yang gemar menonton film bajakan, lahirlah sebuah kesadaran besar. Suatu hari, ia mendapatkan tugas untuk membuat film sendiri, dan di situlah ia merasakan betapa sulitnya melahirkan sebuah karya. Rasa bersalah pun tumbuh karena selama ini ia menikmati hasil jerih payah orang lain tanpa memberi penghargaan.",
-      "Kesadaran itu menjadi titik balik. Ia mulai menabung, berusaha menonton film secara legal agar rasa bersalah itu tak lagi menghantui. Hingga akhirnya ia menemukan akses premium dengan harga murah. Dari sana, sebuah ide muncul: “Kalau akses ini kujual lagi kepada teman-temanku, bukankah mereka juga bisa menikmati karya dengan cara yang lebih baik?”",
-      "Langkah kecil itu menjadi awal perjalanan besar. Ia mulai menjual akses premium kepada teman sekelas. Dari mulut ke mulut, namanya semakin dikenal. Produk yang dijual bertambah banyak, harga semakin variatif, dan ia selalu memberi garansi penuh agar pelanggan merasa aman. Kepercayaan pun tumbuh, dan dari kepercayaan lahirlah reputasi.",
-      "Tanpa iklan besar, hanya lewat cerita, jangkauannya meluas dari teman, guru, hingga masyarakat umum. Ia lalu memilih nama Abah untuk tokonya. Nama itu bukan sekadar label, melainkan simbol: ia ingin hadir seperti sosok ayah, memberi rasa aman, mendengar keluh kesah, dan menjadi tempat berbagi.",
-      "Kini, Abah Store bukan hanya tentang menjual produk. Ia adalah kisah tentang perubahan: dari rasa bersalah menjadi tekad, dari tekad menjadi usaha, dan dari usaha menjadi inspirasi. Bahwa setiap kesalahan bisa menjadi pelajaran, setiap pelajaran bisa melahirkan peluang, dan setiap peluang bisa tumbuh menjadi sesuatu yang berarti bagi banyak orang."
-    ];
-
-    function typeParagraph(idx) {
-      const text = paragraphs[idx];
-      const target = document.getElementById("typing" + (idx + 1));
-      let i = 0;
-
-      function typingStep() {
-        if (i <= text.length) {
-          target.innerHTML = text.slice(0, i) + (i < text.length ? '<span class="blinker"></span>' : '');
-          i++;
-          if (i <= text.length) {
-            setTimeout(typingStep, 18);
-          } else {
-            target.textContent = text;
-            const nextContainer = document.getElementsByClassName("typing-container")[idx + 1];
-            if (nextContainer) {
-              nextContainer.classList.remove("hidden");
-              setTimeout(() => typeParagraph(idx + 1), 400);
-            }
-          }
-        }
-      }
-
-      typingStep();
-    }
-
     function openResellerWA() {
-      const phone = "6285159770254"; // 0851... -> 62851...
+      const phone = "6285159770254";
       const message = "Bah saya tertarik menjadi Reseller Abah Store";
       const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
       window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    window.addEventListener("load", () => typeParagraph(0));
+    // Fade-in saat elemen masuk viewport
+    const reveals = document.querySelectorAll(".reveal");
+
+    // Fallback kalau browser lama (jarang): tampilkan semua
+    if (!("IntersectionObserver" in window)) {
+      reveals.forEach(el => el.classList.add("show"));
+    } else {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            obs.unobserve(entry.target); // animasi sekali saja
+          }
+        });
+      }, {
+        threshold: 0.18,
+        rootMargin: "0px 0px -8% 0px"
+      });
+
+      reveals.forEach(el => observer.observe(el));
+    }
   </script>
 </body>
 </html>
