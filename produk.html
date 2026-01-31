@@ -1,104 +1,335 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABAH STORE - Produk Digital Premium</title>
-    <style>
-        :root {
-            --primary: #111;
-            --hover: #333;
-        }
-        body { background: #fff; color: var(--primary); font-family: Arial, sans-serif; margin:0; }
-        .header { display: flex; align-items: center; padding: 20px; border-bottom: 3px solid var(--primary);}
-        .logo { width: 80px; margin-right: 16px;}
-        .title { font-size: 2em; font-weight: bold; color: var(--primary);}
-        .banner { padding: 30px 10px; text-align: center; }
-        .banner h2 { color: var(--primary);}
-        .product-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width:1200px; margin: 0 auto; }
-        .product {
-            background: #fafafa;
-            border: 1.5px solid #eee;
-            padding: 20px;
-            text-align: center;
-            border-radius: 14px;
-            box-shadow: 0 2px 6px #00000011;
-            transition: transform .14s, box-shadow .12s, border .14s;
-        }
-        .product:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 20px #00000022;
-            border-color: var(--primary);
-        }
-        .product img { width: 84px; margin-bottom: 14px;}
-        .product h3 { color: var(--primary); letter-spacing: 0.5px;}
-        .button {
-            display: inline-block;
-            background: var(--primary);
-            color: #fff;
-            padding: 10px 22px;
-            border-radius:7px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-decoration:none;
-            margin-top:12px;
-            box-shadow: 0 2px 8px #1112;
-            transition: background .13s, transform .12s;
-        }
-        .button:hover {
-            background: var(--hover);
-            transform: scale(1.07);
-        }
-        .footer {
-            margin-top: 40px;
-            padding: 20px 0;
-            background: #f6f6f6;
-            text-align: center;
-            color: var(--primary);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        @media (max-width:1000px){ .product-list { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width:700px){ .product-list { grid-template-columns: 1fr; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produk Abah Store</title>
+
+  <style>
+    :root {
+      --primary: #111;
+      --hover: #333;
+      --bg: #ededed;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--primary);
+      min-height: 100vh;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      background: #fff;
+      padding: 22px 16px;
+      text-align: center;
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .header-logo {
+      width: 85px;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: scale(0.85);
+      animation: popLogo .6s ease forwards;
+    }
+
+    @keyframes popLogo {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    header h1 {
+      font-size: 1.7em;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    header p {
+      margin-top: 6px;
+      font-size: 0.95em;
+      opacity: 0.8;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 9px 18px;
+      border-radius: 10px;
+      border: 2px solid var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--primary);
+      transition: 0.15s;
+    }
+
+    .back-home:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ================= PRODUK GRID ================= */
+    .container {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+    }
+
+    /* ================= CARD PRODUK ================= */
+    .card {
+      background: #fafafa;
+      border: 1.5px solid #eee;
+      border-radius: 14px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 2px 6px #00000011;
+      transition: transform .14s, box-shadow .12s, border .14s;
+
+      /* untuk sejajarkan posisi elemen */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 20px #00000022;
+      border-color: var(--primary);
+    }
+
+    /* GAMBAR PRODUK */
+    .product-img {
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
+      margin: 0 auto 14px auto;
+    }
+
+    /* BODY CARD (agar harga & tombol sejajar) */
+    .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card h2 {
+      font-size: 1.15em;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+    }
+
+    /* FIX: deskripsi dibuat tinggi konsisten agar HARGA sejajar */
+    .desc {
+      font-size: 0.92em;
+      opacity: 0.8;
+      margin-bottom: 12px;
+      line-height: 1.4;
+
+      /* sesuaikan jika deskripsi kamu lebih panjang/pendek */
+      min-height: 55px;
+    }
+
+    /* Harga ikut sejajar karena .desc tingginya sama */
+    .price {
+      font-weight: bold;
+      margin-bottom: 14px;
+      font-size: 0.95em;
+    }
+
+    /* tombol sejajar rata bawah */
+    .btn {
+      margin-top: auto;
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 7px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px #1112;
+      transition: background .13s, transform .12s;
+    }
+
+    .btn:hover {
+      background: var(--hover);
+      transform: scale(1.07);
+    }
+
+    /* ================= FAQ SECTION ================= */
+    .faq {
+      margin-top: 55px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 22px;
+      box-shadow: 0 3px 18px #00000012;
+    }
+
+    .faq h3 {
+      text-align: center;
+      margin-bottom: 18px;
+      font-size: 1.35em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .faq p {
+      margin-bottom: 14px;
+      line-height: 1.6;
+      font-size: 0.95em;
+      opacity: 0.9;
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      margin-top: 45px;
+      text-align: center;
+      padding: 16px;
+      background: #fff;
+      border-top: 3px solid var(--primary);
+      font-size: 0.92em;
+    }
+
+    /* ================= FLOATING WA ================= */
+    .wa-float {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      background: #25d366;
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 18px #0003;
+      transition: 0.2s;
+      z-index: 99;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.06);
+    }
+
+    /* ================= MOBILE ================= */
+    @media (max-width: 700px) {
+      .desc { min-height: 0; } /* di HP biar fleksibel */
+    }
+  </style>
 </head>
+
 <body>
-    <div class="header">
-        <img src="logo-abah-store.png" class="logo" alt="Logo Abah Store">
-        <div class="title">ABAH STORE</div>
-    </div>
-    <div class="banner">
-        <h2>Produk Digital Premium</h2>
-        <p>Dengan harga terjangkau dan proses mudah. Tersedia Netflix Premium, Canva Premium, CapCut Pro, dan lainnya!</p>
-    </div>
-    <div class="product-list">
-        <div class="product">
-            <img src="netflix.png" alt="Netflix">
-            <h3>Netflix Premium</h3>
-            <p>Mulai Rp 25.000/bulan</p>
-            <a class="button" href="https://wa.me/nomoranda">Pesan</a>
+
+  <!-- HEADER -->
+  <header>
+    <img src="logo-abah-store.png" alt="Logo Abah Store" class="header-logo">
+    <h1>ABAH STORE</h1>
+    <p>Produk Digital Premium • Aman • Legal • Bergaransi</p>
+    <a href="index.html" class="back-home">← Kembali ke Home</a>
+  </header>
+
+  <!-- PRODUK -->
+  <div class="container">
+    <div class="section-title">Produk Digital Premium</div>
+
+    <div class="products">
+
+      <div class="card">
+        <img src="netflix.png" class="product-img" alt="Netflix Premium">
+        <div class="card-body">
+          <h2>Netflix Premium</h2>
+          <p class="desc">Akun premium legal, kualitas HD/4K, garansi penuh.</p>
+          <p class="price">Mulai Rp 25.000</p>
+          <a class="btn" href="https://wa.me/6285159770254?text=Saya%20mau%20pesan%20Netflix%20Premium%20Bah">
+            Pesan
+          </a>
         </div>
-        <div class="product">
-            <img src="canva.png" alt="Canva">
-            <h3>Canva Premium</h3>
-            <p>Mulai Rp 25.000/bulan</p>
-            <a class="button" href="https://wa.me/nomoranda">Pesan</a>
+      </div>
+
+      <div class="card">
+        <img src="canva.png" class="product-img" alt="Canva Pro">
+        <div class="card-body">
+          <h2>Canva Pro</h2>
+          <p class="desc">Unlock semua template premium, cocok untuk desain & bisnis.</p>
+          <p class="price">Mulai Rp 15.000</p>
+          <a class="btn" href="https://wa.me/6285159770254?text=Saya%20mau%20pesan%20Canva%20Pro%20Bah">
+            Pesan
+          </a>
         </div>
-        <div class="product">
-            <img src="capcut.png" alt="CapCut">
-            <h3>CapCut Pro</h3>
-            <p>Mulai Rp 20.000/bulan</p>
-            <a class="button" href="https://wa.me/nomoranda">Pesan</a>
+      </div>
+
+      <div class="card">
+        <img src="capcut.png" class="product-img" alt="CapCut Pro">
+        <div class="card-body">
+          <h2>CapCut Pro</h2>
+          <p class="desc">Akses semua efek premium, tanpa watermark, full fitur.</p>
+          <p class="price">Mulai Rp 20.000</p>
+          <a class="btn" href="https://wa.me/6285159770254?text=Saya%20mau%20pesan%20CapCut%20Pro%20Bah">
+            Pesan
+          </a>
         </div>
-        <div class="product">
-            <img src="other.png" alt="Produk Lain">
-            <h3>Produk Lainnya</h3>
-            <p>Hubungi kami untuk info produk digital premium lain</p>
-            <a class="button" href="https://wa.me/nomoranda">Cek Produk Lainnya</a>
+      </div>
+
+      <div class="card">
+        <img src="produk-lain.jpg" class="product-img" alt="Produk Lainnya">
+        <div class="card-body">
+          <h2>Produk Lainnya</h2>
+          <p class="desc">Spotify, YouTube Premium, Viu, Disney+, dll.</p>
+          <p class="price">Hubungi Admin</p>
+          <a class="btn" href="https://wa.me/6285159770254?text=Min%20produk%20apa%20saja%20yang%20tersedia%20di%20Abah%20Store?">
+            Pesan
+          </a>
         </div>
+      </div>
+
     </div>
-    <div class="footer">
-        &copy; 2023 ABAH STORE | WhatsApp: 08xxxxxxx
+
+    <!-- FAQ -->
+    <div class="faq">
+      <h3>FAQ • Cara Pesan</h3>
+
+      <p><b>❓ Cara order bagaimana?</b><br>
+        Klik tombol Pesan → otomatis masuk WhatsApp admin.</p>
+
+      <p><b>❓ Apakah produk aman?</b><br>
+        Ya, semua produk premium terpercaya dan bergaransi.</p>
+
+      <p><b>❓ Bisa jadi reseller?</b><br>
+        Bisa! Langsung chat admin untuk info reseller tanpa modal.</p>
     </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2023 ABAH STORE | WhatsApp: 0851-5977-0254
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a class="wa-float"
+     href="https://wa.me/6285159770254?text=Halo%20min%20saya%20mau%20tanya%20produk%20Abah%20Store">
+    💬 Chat WhatsApp
+  </a>
+
 </body>
 </html>
